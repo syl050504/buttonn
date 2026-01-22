@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Click Example</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #myGif {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img id="myButton" src="red.png" alt="red">
+
+    <img id="myGif" src="gif.gif" alt="GIF">
+
+    <audio id="clickSound" preload="auto">
+        <source src="error.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        document.getElementById('myButton').addEventListener('click', handleClick);
+
+        function handleClick() {
+            try {
+                const sound = document.getElementById('clickSound');
+                sound.currentTime = 0;
+                sound.play().catch(err => console.error("Audio play failed:", err));
+
+                document.getElementById('myButton').style.display = 'none';
+
+                document.getElementById('myGif').style.display = 'block';
+            } catch (error) {
+                console.error("Error handling click:", error);
+            }
+        }
+    </script>
+
+</body>
+
+</html>
